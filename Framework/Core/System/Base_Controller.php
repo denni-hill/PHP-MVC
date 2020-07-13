@@ -6,5 +6,13 @@
  */
 abstract class Base_Controller
 {
+    protected $AjaxResponder;
 
+    protected $DataBaseProvider;
+
+    public function __construct(AjaxResponder $AjaxResponder = NULL, DataBaseProvider $DataBaseProvider = NULL)
+    {
+        $this->AjaxResponder = $AjaxResponder == NULL ? new AjaxResponder() : $AjaxResponder;
+        $this->DataBaseProvider = $DataBaseProvider == NULL ? new DataBaseProvider() : $DataBaseProvider;
+    }
 }

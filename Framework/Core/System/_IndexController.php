@@ -7,40 +7,40 @@
  */
 abstract class _IndexController extends Base_Controller
 {
-    public function ProcessApp(_IndexController $controllerObj, $app_info)
+    public function ProcessApp(_IndexController $controllerObj, $appInfo)
     {
-        $methodName = "Index";
-        if (count($app_info["UriParts"]) == 0)
-            $app_info["ControllerName"] = "Index";
-        else $app_info["ControllerName"] = array_shift($app_info["UriParts"]);
+        $callableMethodName = "Index";
+        if (count($appInfo["UriParts"]) == 0)
+            $appInfo["ControllerName"] = "Index";
+        else $appInfo["ControllerName"] = array_shift($appInfo["UriParts"]);
 
-        if (strtolower($app_info["ControllerName"]) == "api") {
-            $methodName = "ApiIndex";
-            if (count($app_info["UriParts"]) == 0)
-                $app_info["ControllerName"] = "Index";
-            else $app_info["ControllerName"] = array_shift($app_info["UriParts"]);
+        if (strtolower($appInfo["ControllerName"]) == "api") {
+            $callableMethodName = "ApiIndex";
+            if (count($appInfo["UriParts"]) == 0)
+                $appInfo["ControllerName"] = "Index";
+            else $appInfo["ControllerName"] = array_shift($appInfo["UriParts"]);
         }
 
-        define("ACTIVE_VIEW", $app_info["ControllerName"]);
-        $app_info["ControllerName"] .= "Controller";
+        define("ACTIVE_VIEW", $appInfo["ControllerName"]);
+        $appInfo["ControllerName"] .= "Controller";
 
-        if(strtolower($app_info["ControllerName"]) == "indexcontroller")
+        if(strtolower($appInfo["ControllerName"]) == "indexcontroller")
         {
-            if(method_exists($controllerObj, $methodName))
+            if(method_exists($controllerObj, $callableMethodName))
             {
-                $controllerObj->$methodName($app_info);
+                $controllerObj->$callableMethodName($appInfo);
             }
             else moveTo('/404/');
         }
         else
         {
-            if(file_exists(ACTIVE_APP_DIR . '/' . $app_info["ControllerName"] . ".php"))
+            if(file_exists(ACTIVE_APP_DIR . '/' . $appInfo["ControllerName"] . ".php"))
             {
-                require(ACTIVE_APP_DIR . '/' . $app_info["ControllerName"] . ".php");
-                $controllerObj = new $app_info["ControllerName"]();
-                if(method_exists($controllerObj, $methodName))
+                require(ACTIVE_APP_DIR . '/' . $appInfo["ControllerName"] . ".php");
+                $controllerObj = new $appInfo["ControllerName"]();
+                if(method_exists($controllerObj, $callableMethodName))
                 {
-                    $controllerObj->$methodName($app_info);
+                    $controllerObj->$callableMethodName($appInfo);
                 }
                 else moveTo('/404/');
             }

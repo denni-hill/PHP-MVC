@@ -20,9 +20,9 @@ class AjaxResponder
         $this->Response['Messages'][] = $value;
     }
 
-    public function AddArgument($key, $value)
+    public function AddArgument($value)
     {
-        $this->Response['Arguments'][$key] = $value;
+        $this->Response['Arguments'][] = $value;
     }
 
     public function AddRedirect($value)

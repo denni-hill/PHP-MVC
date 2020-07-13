@@ -94,7 +94,7 @@ class MVCEngine
      */
     private function ProcessModels()
     {
-        $models = glob(MODELS_DIR . '/*Model.php');
+        $models = glob(MODELS_DIR . '/*/*Model.php');
         foreach ($models as $model) {
             require $model;
         }
@@ -113,7 +113,7 @@ class MVCEngine
         }
 
         define("ACTIVE_APP", $this->App['Name']);
-        define("ACTIVE_APP_DIR", APPS_DIR . '/' . $this->App['Name']);
+        define("ACTIVE_APP_DIR", APPS_DIR . '/' . ACTIVE_APP);
 
         require APPS_DIR . '/' . $this->App['Name'] . '/IndexController.php';
         $indexControllerObj = new IndexController();

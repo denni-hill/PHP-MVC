@@ -6,5 +6,5 @@
  */
 interface iApi
 {
-    public function ApiIndex(array $app_info = array());
+    public function ApiIndex(array $appInfo = array());
 }

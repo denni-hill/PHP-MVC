@@ -1,9 +1,9 @@
 <?php
 require FRAMEWORK_DIR . '/Core/System/Base_Controller.php';
 require FRAMEWORK_DIR . '/Core/DataBase/RedBeanORM.php';
-require FRAMEWORK_DIR . '/Core/System/DB_Controller.php';
+require FRAMEWORK_DIR . '/Core/System/DataBaseProvider.php';
 
-DB_Controller::setup();
+DataBaseProvider::setup();
 
 define("APPS_DIR", BASE_DIR . '/Apps');
 define("MODELS_DIR", BASE_DIR . '/Models');
@@ -24,6 +24,8 @@ require FRAMEWORK_DIR . '/Core/System/AjaxResponder.php';
 require FRAMEWORK_DIR . '/Core/System/iController.php';
 require FRAMEWORK_DIR . '/Core/System/iModel.php';
 require FRAMEWORK_DIR . '/Core/System/iApi.php';
+
+require FRAMEWORK_DIR . '/Core/System/Base_Model.php';
 
 require FRAMEWORK_DIR . '/Core/System/_IndexController.php';
 
